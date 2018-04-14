@@ -1,0 +1,16 @@
+namespaces:
+  {{namespace}}:
+    services:
+    - name: httpbin-demo
+      ports:
+      - {name: http, port: 5000}
+      annotations:
+        nginx:
+        - http:
+          - server: httpbin.{{namespace}}.*
+            paths:
+            - path: /
+      pod:
+        containers:
+        - name: httpbin
+          image: registry.rebelsoft.com/httpbin:latest
